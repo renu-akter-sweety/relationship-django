@@ -1,0 +1,154 @@
+{% extends 'home.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0px;
+}
+
+h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #b0b0b0;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 16px 0;
+  display: inline-block;
+  border: 1px solid #333;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  background-color: #333;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Table Styles */
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+td, th {
+  border: 1px solid #333;
+  padding: 12px;
+}
+
+tr:nth-child(even) {background-color: #2a2a2a;}
+
+tr:hover {background-color: #333;}
+
+th {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+<body>
+
+<h2>Employee Info oneTOone Relationship</h2>
+
+<form action="" method="POST">
+  {% csrf_token %}
+   <label for="lname">Employee</label>
+  <select name="employee" id="">
+    <option value="">--select--</option>
+    {% for data in employee_data %}
+        <option value="{{data.id}}">{{data.name}}</option>
+    {% endfor %}
+  </select>
+  <label for="lname">Gender</label>
+  <select name="gender" id="">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="ThirdGender">ThirdGender</option>
+  </select>
+  <label for="fname">Email</label>
+  <input type="email" id="fname" name="email" placeholder="Your email">
+
+  <label for="lname">Address</label>
+  <textarea name="address" id="" placeholder="Your address.."></textarea>
+
+  <label for="lname">Mobile</label>
+  <input type="text" id="lname" name="mobile" placeholder="Your number">
+
+  <input type="submit" value="Submit">
+</form>
+<table>
+  <tr>
+    <th>Employee</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Address</th>
+  </tr>
+  
+  {% for i in info_data %} 
+  <tr>
+    <td>{{i.employee}}</td>
+    <td>{{i.gender}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.mobile}}</td>
+    <td>{{i.address}}</td>
+  </tr>  
+  {% endfor %}
+</table>
+</body>
+</html>
+{% endblock body %}
